@@ -1,12 +1,54 @@
-import React from 'react'
-import logo from '../assets/images/logo1.jpg'
+import { faComment } from '@fortawesome/free-regular-svg-icons'
+import { faHouse } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 const Navbar = () => {
   const Avatar = () => {
     return (
-      <div className="relative inline-flex h-10 w-10 items-center justify-center overflow-hidden rounded-full bg-gray-100 dark:bg-gray-600">
+      <div className="relative inline-flex h-12 w-12 items-center justify-center overflow-hidden rounded-full bg-gray-100 dark:bg-gray-600">
         <span className="font-medium text-gray-600 dark:text-gray-300">JL</span>
       </div>
+    )
+  }
+  const Notification = () => {
+    const buttonStyle = {
+      backgroundColor: 'blue',
+      border: 'none',
+      borderRadius: '50%',
+      height: '40px',
+      width: '40px',
+      padding: '10px',
+      color: 'white',
+      cursor: 'pointer',
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+    }
+
+    return (
+      <button style={buttonStyle}>
+        <FontAwesomeIcon icon={faComment} />
+      </button>
+    )
+  }
+  const HomeButton = () => {
+    const buttonStyle = {
+      backgroundColor: 'blue',
+      border: 'none',
+      borderRadius: '50%',
+      height: '40px',
+      width: '40px',
+      padding: '10px',
+      color: 'white',
+      cursor: 'pointer',
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+    }
+    return (
+      <button style={buttonStyle}>
+        <FontAwesomeIcon icon={faHouse} />
+      </button>
     )
   }
   const Serach = () => {
@@ -43,7 +85,7 @@ const Navbar = () => {
           className="ml-2 rounded-lg border border-blue-700 bg-blue-700 p-2.5 text-sm font-medium text-white hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
         >
           <svg
-            className="h-5 w-5"
+            className="h-6 w-6"
             fill="none"
             stroke="currentColor"
             viewBox="0 0 24 24"
@@ -61,54 +103,43 @@ const Navbar = () => {
       </form>
     )
   }
-
-  const Notification = () => {
-    return (
-      <button
-        id="dropdownNotificationButton"
-        data-dropdown-toggle="dropdownNotification"
-        className="inline-flex items-center text-center text-sm font-medium text-gray-500 hover:text-gray-900 focus:outline-none dark:text-gray-400 dark:hover:text-white"
-        type="button"
-      >
-        <svg
-          className="h-6 w-6"
-          aria-hidden="true"
-          fill="currentColor"
-          viewBox="0 0 20 20"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path d="M10 2a6 6 0 00-6 6v3.586l-.707.707A1 1 0 004 14h12a1 1 0 00.707-1.707L16 11.586V8a6 6 0 00-6-6zM10 18a3 3 0 01-3-3h6a3 3 0 01-3 3z" />
-        </svg>
-        <div className="relative flex">
-          <div className="relative -top-2 right-3 inline-flex h-3 w-3 rounded-full border-2 border-white bg-red-500 dark:border-gray-900" />
-        </div>
-      </button>
-    )
-  }
   const AddQuestion = () => {
     return (
       <button
         type="button"
-        className="mb-2 mr-2 rounded-full bg-blue-700 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+        className="mb-2 mr-2 rounded-full bg-blue-700 px-5 py-3 text-center text-sm font-medium text-white hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
       >
         Ask Question
       </button>
     )
   }
+  const Title = () => {
+    return (
+      <div className="flex items-center gap-3">
+        <h1 className="text-2xl font-bold text-gray-700 dark:text-gray-100">
+          PeerLink
+        </h1>
+      </div>
+    )
+  }
   return (
     <div>
-      <nav className="border-gray-200 bg-white shadow-md dark:bg-gray-900">
-        <div>
-          <Serach />
-        </div>
-        <div>
-          <Notification />
-        </div>
-        <div>
-          <Avatar />
-        </div>
-        <div>
-          <AddQuestion />
+      <nav className="border-gray-200 bg-white p-3 shadow-md dark:bg-gray-900">
+        <div className="flex justify-between">
+          <div className="flex gap-4">
+            <Title />
+            <Serach />
+          </div>
+          <div className="flex gap-3">
+            <div className="pt-1">
+              <HomeButton />
+            </div>
+            <div className="pt-1">
+              <Notification />
+            </div>
+            <Avatar />
+            <AddQuestion />
+          </div>
         </div>
       </nav>
     </div>
