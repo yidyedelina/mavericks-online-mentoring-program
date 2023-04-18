@@ -1,16 +1,20 @@
 import React from 'react'
 
 import './App.css'
-import Navbar from './components/NavbarForum'
-import { Counter } from './features/counter/Counter'
-import logo from './logo.svg'
-import { useGetDocsListQuery } from './services/docs'
+
+import ProfileBanner from './components/ProfileBanner'
+import MenteesTab from './components/MenteesTab'
+import TodaysTask from './components/TodayTask'
+
 
 const App: React.FC = () => {
   return (
-    <>
-      <Navbar />
-    </>
+    <main className="App">
+      <ProfileBanner/>
+      <MenteesTab />
+      <TodaysTask/>
+    </main>
+
   )
 }
 
