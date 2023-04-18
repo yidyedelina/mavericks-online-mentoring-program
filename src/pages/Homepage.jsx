@@ -1,9 +1,10 @@
 import React from 'react'
 import Navbar from '../components/Navbar'
 import Body from '../components/Body'
-import Courses from '../components/course/Courses'
 import Footer from '../components/Footer'
 import Testimonies from '../components/testimony/Testimonies'
+import Description from '../components/Description'
+import Goals from '../components/goal/Goals'
 
 
 const Homepage = () => {
@@ -11,7 +12,8 @@ const Homepage = () => {
     <div>
         <Navbar />
         <Body />
-        <Courses />
+        <Goals />
+        <Description />
         <Testimonies />
         <Footer />
     </div>
