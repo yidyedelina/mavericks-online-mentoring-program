@@ -1,5 +1,13 @@
 import { createApi, fakeBaseQuery } from '@reduxjs/toolkit/query/react'
-import { collection, getDocs, addDoc } from 'firebase/firestore'
+import {
+  collection,
+  getDocs,
+  addDoc,
+  deleteDoc,
+  doc,
+  setDoc,
+  getDoc,
+} from 'firebase/firestore'
 
 import { db } from '../../config/firebase'
 
@@ -8,14 +16,13 @@ import type { Course, CourseState, Mentees, Tasks } from './types'
 export const courseApi = createApi({
   baseQuery: fakeBaseQuery(),
   endpoints: (builder) => ({
-    createTask: builder.mutation<
-      CourseState,
-      { tasks: Tasks; courseId: string }
-    >({
-      async queryFn({ tasks, courseId }: { tasks: Tasks; courseId: string }) {
+    createTask: builder.mutation<CourseState, { tasks: Tasks }>({
+      async queryFn({ tasks }: { tasks: Tasks }) {
         try {
+          const courseId = 'FX7gxWWG5ZLDCykuaQYn'
           const taskRef = collection(db, 'course', courseId, 'tasks')
           await addDoc(taskRef, tasks)
+
           const ref = collection(db, 'course')
           const snapshot = await getDocs(ref)
           const courses: Course[] = []
@@ -34,16 +41,28 @@ export const courseApi = createApi({
         }
       },
     }),
-    getCourses: builder.query<CourseState, void>({
+    getCourses: builder.query<{ activities: Tasks[]; week: string }[], void>({
       async queryFn() {
         try {
-          const ref = collection(db, 'course')
-          const snapshot = await getDocs(ref)
-          const courses: Course[] = []
+          const courseid = 'FX7gxWWG5ZLDCykuaQYn'
+          // retrieve course with specified id
+          const colRef = collection(db, 'course', courseid, 'tasks')
+          const snapshot = await getDocs(colRef)
+          const tasks: Tasks[] = []
           snapshot.forEach((doc) => {
-            courses.push(doc.data() as Course)
+            tasks.push(doc.data() as Tasks)
           })
-          return { data: { courses, error: null, loading: false } }
+          const mp = new Map<string, Tasks[]>()
+          tasks.forEach((task) => {
+            if (!mp.has(task.week.toString())) {
+              mp.set(task.week.toString(), [])
+            }
+            mp.get(task.week.toString()).push(task)
+          })
+          const mpToArray = Array.from(mp, (entry) => {
+            return { week: entry[0], activities: entry[1] }
+          })
+          return { data: mpToArray }
         } catch (err) {
           return {
             data: {
@@ -70,24 +89,6 @@ export const courseApi = createApi({
         }
       },
     }),
-    getTasks: builder.query<Tasks[], { courseId: string }>({
-      async queryFn({ courseId }: { courseId: string }) {
-        try {
-          const ref = collection(db, 'course', courseId, 'tasks')
-          const snapshot = await getDocs(ref)
-          const tasks: Tasks[] = []
-          snapshot.forEach((doc) => {
-            tasks.push({
-              ...(doc.data() as Tasks),
-              id: doc.id,
-            })
-          })
-          return { data: tasks }
-        } catch (err) {
-          return { data: [] }
-        }
-      },
-    }),
     getMenteesTasks: builder.query<Tasks[], { menteesId: string }>({
       async queryFn({ menteesId }: { menteesId: string }) {
         try {
@@ -106,7 +107,38 @@ export const courseApi = createApi({
         }
       },
     }),
-    
+    getTask: builder.query<Tasks, string>({
+      async queryFn(taskId: string) {
+        try {
+          const courseId = 'FX7gxWWG5ZLDCykuaQYn'
+          const docRef = doc(db, 'course', courseId, 'tasks', taskId)
+          const dataSnapShot = await getDoc(docRef)
+          const data = dataSnapShot.data() as Tasks
+          return { data: data }
+        } catch (err) {
+          console.log(err)
+          return { error: 'something went wrong' }
+        }
+      },
+    }),
+    getTasks: builder.query<Tasks[], { courseId: string }>({
+      async queryFn({ courseId }: { courseId: string }) {
+        try {
+          const ref = collection(db, 'course', courseId, 'tasks')
+          const snapshot = await getDocs(ref)
+          const tasks: Tasks[] = []
+          snapshot.forEach((doc) => {
+            tasks.push({
+              ...(doc.data() as Tasks),
+              id: doc.id,
+            })
+          })
+          return { data: tasks }
+        } catch (err) {
+          return { data: [] }
+        }
+      },
+    }),
     getTodayTask: builder.query<
       Tasks[],
       { courseId: string; menteesId: string }
@@ -170,6 +202,33 @@ export const courseApi = createApi({
         }
       },
     }),
+    markTaskCompleted: builder.mutation<boolean, string>({
+      async queryFn(taskId: string) {
+        try {
+          const menteeId = 'K8zcusNSikRmBrOp8J7x'
+          const ref = collection(db, 'mentees', menteeId, 'tasks')
+          setDoc(doc(ref, taskId), {
+            id: taskId,
+          })
+          return { data: true }
+        } catch (err) {
+          return { data: false }
+        }
+      },
+    }),
+
+    removeTask: builder.mutation<boolean, string>({
+      async queryFn(taskId: string) {
+        try {
+          const menteesId = 'K8zcusNSikRmBrOp8J7x'
+          const ref = collection(db, 'mentees', menteesId, 'tasks')
+          await deleteDoc(doc(ref, taskId))
+          return { data: true }
+        } catch (err) {
+          return { data: false }
+        }
+      },
+    }),
   }),
   reducerPath: 'courseApi',
 })
@@ -178,4 +237,7 @@ export const {
   useCreateTaskMutation,
   useGetCoursesQuery,
   useGetTodayTaskQuery,
+  useMarkTaskCompletedMutation,
+  useRemoveTaskMutation,
+  useGetTaskQuery,
 } = courseApi

@@ -12,14 +12,14 @@ export interface CourseState {
 }
 
 export interface Tasks {
-  completed: boolean | undefined
-  id: string
+  completed?: boolean | undefined
+  id?: string
   title: string
-  type: 'Video' | 'Blog' | 'MileStone'
+  type: 'Video' | 'Article' | 'Project'
   content: string
   week: number
   day: number
-  createdBy: string
+  createdBy?: string
 }
 
 export interface EnrolledCourse {
