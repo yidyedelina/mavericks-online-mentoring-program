@@ -1,4 +1,6 @@
 import React from 'react'
+import MenteeProfile from './pages/MenteeProfile'
+
 
 import './App.css'
 
