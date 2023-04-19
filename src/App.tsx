@@ -1,9 +1,11 @@
+
 import React, { useState } from 'react'
 
 import './App.css'
 import Accordion from './components/Accordion'
 import Modal from './components/basic/Modal'
 import CreateTaskForm from './components/CreateTaskForm'
+
 import MenteesTab from './components/MenteesTab'
 import ProfileBanner from './components/ProfileBanner'
 import TabBar from './components/TabBar'
@@ -42,6 +44,7 @@ const App: React.FC = () => {
         <CreateTaskForm />
       </Modal>
     </main>
+
   )
 }
 
