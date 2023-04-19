@@ -8,6 +8,7 @@ import Goals from '../components/goal/Goals'
 import Schedule from '../components/Schedule'
 import Help from '../components/Help'
 import Courses from '../components/course/Courses'
+import Mentors from '../components/mentor/Mentors'
 
 
 const Homepage = () => {
@@ -21,6 +22,7 @@ const Homepage = () => {
         <Schedule />
         <Goals />
         <Help />
+        <Mentors />
         <Testimonies />
         <Description />
         <Help />

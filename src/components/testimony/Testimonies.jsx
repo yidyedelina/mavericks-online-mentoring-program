@@ -4,7 +4,7 @@ import imgg from '../../assets/images/blackgirl.jpg'
 const Testimonies = () => {
   return (
     <div className='mb-24'>
-        <h1 className='p-5 text-3xl text-center bg-gradient-to-r to-cyan-300 my-10'>Testimonies</h1>
+        <h1 className='p-5 text-3xl text-center bg-gradient-to-r to-cyan-300 my-10'>Case Studies</h1>
         <div className='flex flex-wrap justify-center'>
                         <TestimonyCard
                         img = {imgg}
