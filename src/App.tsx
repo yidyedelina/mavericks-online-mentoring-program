@@ -1,5 +1,6 @@
 import React from 'react'
 import MentorRating from './components/mentor/MentorRating'
+import Homepage from './pages/Homepage'
 
 
 
@@ -8,6 +9,7 @@ import MentorRating from './components/mentor/MentorRating'
 const App = () => {
   return (
     <div>
+      <Homepage />
       <MentorRating />
     </div>
   )
