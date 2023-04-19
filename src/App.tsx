@@ -1,11 +1,16 @@
 import React from 'react'
-import Homepage from './pages/Homepage'
+import MentorSignin from './pages/MentorSignin'
+import MenteeSignup from './pages/MenteeSignup'
+import MenteeSignin from './pages/MenteeSignin'
 import MentorSignup from './pages/MentorSignup'
 
 const App = () => {
   return (
     <div>
-      <Homepage />
+      <MentorSignup />
+      <MentorSignin />
+      <MenteeSignup />
+      <MenteeSignin />
     </div>
   )
 }
