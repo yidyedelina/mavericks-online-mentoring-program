@@ -167,36 +167,3 @@ const MentorRating = () => {
 
 export default MentorRating
 
-// <div>
-// <div className="bg-white rounded shadow p-4">
-//       <div className="mb-4"> 
-//         <h2 className="text-cyan-500 font-bold text-lg">Punctuality</h2> 
-//         <textarea className="w-full p-2 border border-gray-300 rounded mt-2"></textarea>
-//       </div>
-
-//       <div className="mb-4"> 
-//         <h2 className="text-cyan-500 font-bold text-lg">Preparation</h2>
-//         <textarea className="w-full p-2 border border-gray-300 rounded mt-2"></textarea>
-//       </div>
-
-//       <div className="mb-4">  
-//         <h2 className="text-cyan-500 font-bold text-lg">Engagement</h2> 
-//         <textarea className="w-full p-2 border border-gray-300 rounded mt-2"></textarea>
-//       </div>
-
-//       <div className="mb-4"> 
-//         <h2 className="text-cyan-500 font-bold text-lg">Helpfulness</h2> 
-//         <textarea className="w-full p-2 border border-gray-300 rounded mt-2"></textarea>
-//       </div> 
-  
-//       <div>
-//         <h2 className="text-cyan-500 font-bold text-lg">Overall Experience</h2>
-//         <textarea className="w-full p-2 border border-gray-300 rounded mt-2"></textarea>
-//       </div>
-  
-//       <div className="flex justify-end">
-//         <button className="px-4 py-2 text-white bg-cyan-500 rounded mt-4">Submit</button>
-//         <button className="px-4 py-2 bg-gray-300 text-cyan-500 rounded mt-4 ml-2">Cancel</button>
-//       </div>
-//     </div> 
-//     </div>
