@@ -1,8 +1,5 @@
 import React from 'react'
 import CourseCard from './CourseCard'
-import img1 from '../../assets/images/frontend.jpg'
-import img2 from '../../assets/images/backend.jpg'
-import img3 from '../../assets/images/fullstack.jpg'
 
 
 const Courses = () => {
@@ -11,30 +8,26 @@ return(
         <div className='flex flex-wrap justify-center'>
                 <div className='w-1/4    p-5'>
                         <CourseCard 
-                        imgUrl={img1}
-                        title="Frontend Web Development"
-                        description="Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quod."
+                        title="Frontend Development"
+                        description="Frontend Web Development is the process of converting data to a graphical interface, through the use of HTML, CSS, and JavaScript."
                         />
                 </div>
                 <div className='w-1/4 p-5'>
                         <CourseCard 
-                        imgUrl={img2}
-                        title="Backend Web Development"
-                        description="Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quod."
+                        title="Backend Development"
+                        description="Backend Web Development is the process of building and maintaining the technology that powers the front end of a website or application."
                         />
                 </div>
                 <div className='w-1/4 p-5'>
                         <CourseCard 
-                        imgUrl={img3}
-                        title="Fullstack Web Development"
-                        description="Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quod."
+                        title="Fullstack Development"
+                        description="Fullstack Web Development is the process of building and maintaining the technology that powers the front end of a website or application."
                         />
                 </div>
                 <div className='w-1/4 p-5'>
                         <CourseCard 
-                        imgUrl={img3}
-                        title="Fullstack Web Development"
-                        description="Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quod."
+                        title="Ui/Ux Design"
+                        description="UI/UX Design is the process of building and maintaining the technology that powers the front end of a website or application."
                         />
                 </div>
 

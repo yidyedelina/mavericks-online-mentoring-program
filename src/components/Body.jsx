@@ -1,5 +1,6 @@
 import React from 'react'
 import img from '../assets/images/bg.jpg'
+import Services from './Services'
 
 const Body = () => {
   return (
@@ -12,7 +13,7 @@ const Body = () => {
       Get Started
       </button>
     </div>
-    
+    <Services />
     
   </div>
   </div>
