@@ -1,10 +1,11 @@
 import { useState } from 'react'
 
-import type { Tasks } from '../../services/Courses/types'
 import {
   useMarkTaskCompletedMutation,
   useRemoveTaskMutation,
 } from '../../services/Courses/courseapi'
+import type { Tasks } from '../../services/Courses/types'
+import { Link } from 'react-router-dom'
 
 export default function TaskCheckBox({ task }: { task: Tasks }) {
   const [checked, setChecked] = useState(task.completed)
@@ -15,7 +16,7 @@ export default function TaskCheckBox({ task }: { task: Tasks }) {
       if (checked) {
         await removeTask(task.id)
       } else {
-        await addTask(task.id)
+        await addTask(task)
       }
       setChecked(!checked)
     } catch (error) {
@@ -23,7 +24,7 @@ export default function TaskCheckBox({ task }: { task: Tasks }) {
     }
   }
   return (
-    <div className="flex items-center gap-2">
+    <Link to={`mentees/taskDetails/${task.id}`} className="flex items-center gap-2">
       <input
         type="checkbox"
         className="form-checkbox h-5 w-5 text-blue-600"
@@ -31,6 +32,6 @@ export default function TaskCheckBox({ task }: { task: Tasks }) {
         onChange={handleChange}
       />
       <p>Task 1</p>
-    </div>
+    </Link>
   )
 }

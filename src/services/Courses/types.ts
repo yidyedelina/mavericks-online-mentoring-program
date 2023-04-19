@@ -12,6 +12,7 @@ export interface CourseState {
 }
 
 export interface Tasks {
+  dateCompleted: Date
   completed?: boolean | undefined
   id?: string
   title: string

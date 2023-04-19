@@ -202,13 +202,15 @@ export const courseApi = createApi({
         }
       },
     }),
-    markTaskCompleted: builder.mutation<boolean, string>({
-      async queryFn(taskId: string) {
+    markTaskCompleted: builder.mutation<boolean, Tasks>({
+      async queryFn(task: Tasks) {
         try {
           const menteeId = 'K8zcusNSikRmBrOp8J7x'
+  
           const ref = collection(db, 'mentees', menteeId, 'tasks')
-          setDoc(doc(ref, taskId), {
-            id: taskId,
+          setDoc(doc(ref, task.id), {
+            ...task,
+            dateCompleted: new Date()
           })
           return { data: true }
         } catch (err) {
@@ -240,4 +242,5 @@ export const {
   useMarkTaskCompletedMutation,
   useRemoveTaskMutation,
   useGetTaskQuery,
+  useGetMenteesTasksQuery,
 } = courseApi
