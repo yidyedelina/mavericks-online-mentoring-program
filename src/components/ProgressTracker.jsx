@@ -36,7 +36,7 @@ const ProgressTracker = () => {
   }, [])
 
   return (
-    <BrowserRouter className="h-full">
+    <>
       <h2 className="mb-5 text-3xl">Mentee Progress</h2>
       <div className="grid h-full grid-cols-2 grid-rows-1 gap-1">
         <table className="h-fit text-left">
