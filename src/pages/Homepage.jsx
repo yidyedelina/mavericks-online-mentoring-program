@@ -5,6 +5,9 @@ import Footer from '../components/Footer'
 import Testimonies from '../components/testimony/Testimonies'
 import Description from '../components/Description'
 import Goals from '../components/goal/Goals'
+import Schedule from '../components/Schedule'
+import Help from '../components/Help'
+import Courses from '../components/course/Courses'
 
 
 const Homepage = () => {
@@ -12,9 +15,15 @@ const Homepage = () => {
     <div>
         <Navbar />
         <Body />
+        <Courses />
+        <Courses />
+
+        <Schedule />
         <Goals />
-        <Description />
+        <Help />
         <Testimonies />
+        <Description />
+        <Help />
         <Footer />
     </div>
   )

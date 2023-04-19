@@ -12,7 +12,7 @@ const Description = () => {
               <dt className="absolute w-32 h-32 bg-green-500 rounded-full flex items-center justify-center text-2xl font-bold text-white">
                 Q. 
               </dt>
-              <dd className="ml-40 mb-5">
+              <dd className="ml-40 mb-10">
                 <p className="text-lg font-semibold">What is the purpose of this website?</p>
                 <p className="mt-2">The purpose of this website is to provide high-quality virtual mentoring for people of all ages and backgrounds. We aim to connect mentees with experienced mentors in small group programs so they can get guidance, support, and advice for their goals and challenges.</p>
               </dd>

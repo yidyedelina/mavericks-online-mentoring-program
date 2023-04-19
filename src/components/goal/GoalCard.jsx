@@ -11,7 +11,7 @@ const GoalCard = () => {
           <div className="p-8 bg-white rounded shadow-lg">
           <div className='flex juistify-between'>
           <div className='mt-1'>
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-cyan-500 w-6 h-6">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-cyan-500 w-6 h-6">
                 <path d="M21.21 15.89A10 10 0 1 1 8 2.83"></path>
                 <path d="M22 12A10 10 0 0 0 12 2v10z"></path>
                 </svg>   
@@ -27,7 +27,7 @@ const GoalCard = () => {
           <div className="p-8 bg-white rounded shadow-lg">
           <div className='flex juistify-between'>
             <div className='mt-1'>
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-cyan-500 w-6 h-6">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-cyan-500 w-6 h-6">
                 <path d="M12 20h9"></path>
                 <path d="M4 20h5"></path>
                 <path d="M16.5 3a6 6 0 0 1 6 6v6"></path>
@@ -46,7 +46,7 @@ const GoalCard = () => {
           <div className="p-8 bg-white rounded shadow-lg">
           <div className='flex juistify-between'>
             <div className='mt-1'>
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-cyan-500 w-6 h-6">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-cyan-500 w-6 h-6">
                 <path d="M12 2.5C6.20101 2.5 1.5 7.20101 1.5 13C1.5 18.799 6.20101 23.5 12 23.5C17.799 23.5 22.5 18.799 22.5 13C22.5 7.20101 17.799 2.5 12 2.5Z"></path>
                 <path d="M10.5 8H13.5V16H10.5V8Z"></path>
                 <path d="M12 16.5C12.8284 16.5 13.5 15.8284 13.5 15C13.5 14.1716 12.8284 13.5 12 13.5C11.1716 13.5 10.5 14.1716 10.5 15C10.5 15.8284 11.1716 16.5 12 16.5Z"></path>

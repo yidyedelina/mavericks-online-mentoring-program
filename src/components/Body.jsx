@@ -1,6 +1,5 @@
 import React from 'react'
 import img from '../assets/images/bg.jpg'
-import Courses from './course/Courses'
 
 const Body = () => {
   return (
@@ -13,7 +12,7 @@ const Body = () => {
       Get Started
       </button>
     </div>
-    <Courses />
+    
     
   </div>
   </div>
