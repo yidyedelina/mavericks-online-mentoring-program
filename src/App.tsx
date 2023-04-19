@@ -1,11 +1,22 @@
 import React from 'react'
 import MenteeProfile from './pages/MenteeProfile'
 
-const App = () => {
+
+import './App.css'
+
+import ProfileBanner from './components/ProfileBanner'
+import MenteesTab from './components/MenteesTab'
+import TodaysTask from './components/TodayTask'
+
+
+const App: React.FC = () => {
   return (
-    <div>
-      <MenteeProfile />
-    </div>
+    <main className="App">
+      <ProfileBanner/>
+      <MenteesTab />
+      <TodaysTask/>
+    </main>
+
   )
 }
 
