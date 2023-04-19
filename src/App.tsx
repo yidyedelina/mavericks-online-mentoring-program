@@ -1,66 +1,50 @@
-import React from 'react'
+
+import React, { useState } from 'react'
 
 import './App.css'
-import { Counter } from './features/counter/Counter'
-import logo from './logo.svg'
-import { useGetDocsListQuery } from './services/docs'
+import Accordion from './components/Accordion'
+import Modal from './components/basic/Modal'
+import CreateTaskForm from './components/CreateTaskForm'
 
+import MenteesTab from './components/MenteesTab'
+import ProfileBanner from './components/ProfileBanner'
+import TabBar from './components/TabBar'
+import Banner from './components/Test'
+import RecentActions from './components/Test'
+import TodaysTask from './components/TodayTask'
+import WeekBox from './components/WeekBox'
+import CourseDetail from './components/CourseDetail'
 const App: React.FC = () => {
-  const { data, error, isLoading } = useGetDocsListQuery()
+  const [isOpen, setIsOpen] = useState(true)
+  const onClose = () => {
+    setIsOpen(false)
+  }
 
   return (
     <main className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>Hello Vite + RTK Query!</p>
-        <Counter />
-        <p>
-          Edit <code>App.tsx</code> and save to test HMR updates.
-        </p>
-        <p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-          {' | '}
-          <a
-            className="App-link"
-            href="https://vitejs.dev/guide/features.html"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Vite Docs
-          </a>
-          {error ? (
-            <>Oh no, there was an error</>
-          ) : isLoading ? (
-            <>Loading...</>
-          ) : data ? (
-            data.map((v, i) => {
-              return (
-                <span key={i}>
-                  {' | '}
-                  <a
-                    className="App-link"
-                    href={v.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    {v.name}
-                  </a>
-                </span>
-              )
-            })
-          ) : (
-            false
-          )}
-        </p>
-      </header>
+      <CourseDetail />
+      <ProfileBanner />
+      <TabBar
+        tabs={[
+          {
+            component: <RecentActions />,
+            label: 'Recent Action',
+          },
+          {
+            component: <TodaysTask />,
+            label: "Today's Task",
+          },
+          {
+            component: <WeekBox />,
+            label: 'Week',
+          },
+        ]}
+      />
+      <Modal isOpen={isOpen} onClose={onClose}>
+        <CreateTaskForm />
+      </Modal>
     </main>
+
   )
 }
 
