@@ -72,7 +72,7 @@ const mentors = [
 
 function MentorsPage() {
   return (
-    <div className="bg-cyan-500 min-h-screen py-8">
+    <div className="bg-cyan-800 min-h-screen py-8">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <h1 className="text-3xl font-bold text-white mb-4">Meet Our Mentors</h1>
         <p className="text-white mb-8">Browse our list of mentors and find the right one for you.</p>
