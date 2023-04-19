@@ -4,14 +4,13 @@ import 'react-quill/dist/quill.snow.css'
 
 interface Props {
   onClose: () => void
-  isOpen: Boolean
+  isOpen: boolean
 }
-
-const ToAnswer = ({ isOpen, onClose }: Props) => {
-  const [Answer, setAnswer] = useState<string>('')
+const ToAsk = ({ isOpen, onClose }: Props) => {
+  const [Question, setQuestion] = useState<string>('')
   const handleSubmit = (event: any) => {
     event.preventDefault()
-    console.log(Answer)
+    console.log(Question)
     onClose()
   }
   if (!isOpen) return null
@@ -29,7 +28,7 @@ const ToAnswer = ({ isOpen, onClose }: Props) => {
             {/* Modal header */}
             <div className="flex items-start justify-between rounded-t border-b p-4 dark:border-gray-600">
               <h3 className="text-lg font-medium text-gray-900 dark:text-white">
-                Write Your Answer
+                Add Question
               </h3>
               <button
                 type="button"
@@ -53,12 +52,32 @@ const ToAnswer = ({ isOpen, onClose }: Props) => {
                 <span className="sr-only">Close modal</span>
               </button>
             </div>
-            <div className="space-y-6 p-6">
+            <div className="space-y-6 p-3">
+              <div className=" rounded-md bg-sky-100 p-2 leading-5">
+                <p className="mb-4 text-black dark:text-gray-400">Tips:</p>
+                <ul className="leading-4">
+                  <li className="mb-4">
+                    <span className="text-gray-500 dark:text-gray-400">
+                      Make sure your question is clear and concise.
+                    </span>
+                  </li>
+                  <li className="mb-4">
+                    <span className="text-gray-500 dark:text-gray-400">
+                      Keep your question short and to the point.
+                    </span>
+                  </li>
+                  <li className="mb-4">
+                    <span className="text-gray-500 dark:text-gray-400">
+                      Double-check grammar and spelling.
+                    </span>
+                  </li>
+                </ul>
+              </div>
               <div className="my-4">
                 <label className="mb-2 block text-sm font-medium text-gray-900">
-                  Answer
+                  Question
                 </label>
-                <ReactQuill value={Answer} onChange={setAnswer} />
+                <ReactQuill value={Question} onChange={setQuestion} />
               </div>
             </div>
             {/* Modal footer */}
@@ -69,7 +88,7 @@ const ToAnswer = ({ isOpen, onClose }: Props) => {
                 onClick={handleSubmit}
                 className="rounded-lg bg-blue-700 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
               >
-                Post
+                Add
               </button>
             </div>
           </div>
@@ -78,4 +97,5 @@ const ToAnswer = ({ isOpen, onClose }: Props) => {
     </>
   )
 }
-export default ToAnswer
+
+export default ToAsk
