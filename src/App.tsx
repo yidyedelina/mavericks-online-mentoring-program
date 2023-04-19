@@ -1,7 +1,6 @@
 import React from 'react'
 
-// import './App.css'
-import ProgressTracker from './components/ProgressTracker'
+import './App.css'
 import { Counter } from './features/counter/Counter'
 import logo from './logo.svg'
 import { useGetDocsListQuery } from './services/docs'
@@ -11,7 +10,7 @@ const App: React.FC = () => {
 
   return (
     <main className="App">
-      {/* <header className="App-header">
+      <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>Hello Vite + RTK Query!</p>
         <Counter />
@@ -60,8 +59,7 @@ const App: React.FC = () => {
             false
           )}
         </p>
-      </header> */}
-      <ProgressTracker />
+      </header>
     </main>
   )
 }
