@@ -69,7 +69,8 @@ const router = createBrowserRouter([
   {
     path: '/test',
     element: <MentorsPage />,
-  }
+  },
+  
   
 ])
 const root = ReactDOM.createRoot(document.getElementById('root')!)
