@@ -2,10 +2,10 @@ import React from 'react'
 
 const GoalCard = () => {
   return (
-    <div>
-    <div className="py-12 bg-gray-100">
-    <div className="container max-w-6xl mx-auto">
-      <h2 className="text-3xl font-bold text-center">Our Goals<i> <p className="mt-2 text-gray-400 text-lg">"Providing an engaging and impactful mentoring programs in a wide range of subjects and skills."</p></i></h2>
+    <div >
+    <div className="py-12 bg-gray-100 py-28">
+    <div className="container max-w-6xl mx-auto ">
+      <h2 className="lg: text-3xl md:text:xl sm: text:lg font-bold text-center">Our Goals<i> <p className="mt-2 text-gray-400 text-lg">"Providing an engaging and impactful mentoring programs in a wide range of subjects and skills."</p></i></h2>
       <div className="mt-12 flex flex-wrap -mx-4">
         <div className="w-full lg:w-1/3 px-4">
           <div className="p-8 bg-white rounded shadow-lg">
