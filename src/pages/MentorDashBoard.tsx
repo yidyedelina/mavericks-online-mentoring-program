@@ -15,6 +15,7 @@ import ScheduleMeeting from '../components/ScheduleMeeting'
 export default function MentorDashBoard() {
   const { data, isLoading, error } = useGetCoursesQuery()
   const [components, setcomponents] = useState([])
+  const [isMeetingOpen, setIsMeetingOpen] = useState(false)
   useEffect(() => {
     let dt = data?.map((values) => {
       return {
@@ -26,10 +27,6 @@ export default function MentorDashBoard() {
       component: <MenteesList />,
       label: 'Mentees'
     })
-    dt?.push({
-      component: <ScheduleMeeting modal={true}/>,
-      label: 'schedule',
-    })
     setcomponents(dt ? dt : [])
   }, [data]);
   const [isOpen, setIsOpen] = useState(false)
@@ -40,11 +37,17 @@ export default function MentorDashBoard() {
           tabs={components}
         />
       )}
-      <FloatingButton onClick={setIsOpen} />
+      <div className='fixed bottom-20 right-20'>
+        <FloatingButton onClick={setIsOpen}>create task</FloatingButton>
+        <FloatingButton onClick={setIsMeetingOpen}>schedule</FloatingButton>
+        <ScheduleMeeting modal={isMeetingOpen} onClick={setIsMeetingOpen} />
+        <Modal isOpen={isOpen} onClose={setIsOpen}>
+          <CreateTaskForm />
+        </Modal>
+      </div>
+      
 
-      <Modal isOpen={isOpen} onClose={setIsOpen}>
-        <CreateTaskForm />
-      </Modal>
+      
       {/* <Modal isOpen={isOpen} onClose={onClose}>
         <CreateTaskForm />
       </Modal> */}

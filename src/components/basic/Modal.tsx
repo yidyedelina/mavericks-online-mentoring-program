@@ -12,14 +12,14 @@ const Modal = ({
   children: ReactNode
 }) => {
   return (
-    <div className='w-full'>
+    <div className=''>
       <div
         id="authentication-modal"
         tabIndex={-1}
         aria-hidden={!isOpen}
-        className={`fixed right-0 top-0 z-50 ${
+        className={`fixed bottom-40 right-0 w-1/3 z-50 ${
           isOpen ? '' : 'hidden'
-        } h-[calc(100%-1rem)] max-h-full w-full overflow-y-auto overflow-x-hidden p-4 `}
+        } max-h-full  overflow-y-auto overflow-x-hidden p-4 `}
       >
         <div className="relative max-h-full w-full max-w-md">
           {/* Modal content */}

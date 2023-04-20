@@ -1,11 +1,11 @@
 import React from 'react'
 
-function FloatingButton({onClick}: {onClick: ()=> void}) {
+function FloatingButton({onClick, children}: {onClick: ()=> void}) {
   return (
     <button
       onClick={()=>onClick(true)}
-     className="fixed bottom-20 right-20 rounded-full bg-cyan-500 px-6 py-4 font-bold text-white hover:bg-cyan-600">
-      create task
+     className="rounded-full bg-cyan-500 px-6 py-4 font-bold text-white hover:bg-cyan-600">
+     {children}
     </button>
   )
 }

@@ -47,6 +47,8 @@ export interface Mentees {
   linkedin: string
 }
 export interface Mentors {
+  image: string | undefined
+  description: ReactNode
   id: string
   name: string
   email: string
@@ -55,6 +57,7 @@ export interface Mentors {
   github: string
   linkedin: string
   specialization: string
+  areas: String[]
 }
 
 

@@ -16,6 +16,7 @@ import MenteeSignin from './pages/MenteeSignin'
 import MenteeSignup from './pages/MenteeSignup'
 import MentorSignin from './pages/MentorSignin'
 import MentorSignup from './pages/MentorSignup'
+import MentorsPage from './components/MentorChoose/MentorsPage'
 const router = createBrowserRouter([
   {
     path: '/',
@@ -65,6 +66,10 @@ const router = createBrowserRouter([
       }
     ]
   },
+  {
+    path: '/test',
+    element: <MentorsPage />,
+  }
   
 ])
 const root = ReactDOM.createRoot(document.getElementById('root')!)
