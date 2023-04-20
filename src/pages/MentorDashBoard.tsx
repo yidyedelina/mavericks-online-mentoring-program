@@ -17,7 +17,7 @@ export default function MentorDashBoard() {
   const { data, isLoading, error } = useGetCoursesQuery()
   const [components, setcomponents] = useState([])
   const [isMeetingOpen, setIsMeetingOpen] = useState(false)
-  const counter = useSelector((state: any) => state.counter)
+  const counter = useSelector((state: any) => state.counter.value)
   useEffect(() => {
     let dt = data?.map((values) => {
       return {
