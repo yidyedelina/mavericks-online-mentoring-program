@@ -23,8 +23,8 @@ const ToAsk = ({ isOpen, onClose }: Props) => {
 
     try {
       const docRef = await addDoc(collection(db, 'Questions'), {
-        Firstname: 'joss',
-        Lastname: 'shem',
+        Firstname: 'Yidye',
+        Lastname: 'Tebeje',
         question: Question,
         answer: [],
       })

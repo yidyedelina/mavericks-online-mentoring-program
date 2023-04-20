@@ -10,7 +10,7 @@ function Accordion({ children, ToAnswer }: Props) {
     return (
       <button
         onClick={ToAnswer}
-        className="flex gap-2 rounded-md bg-cyan-600 px-4 py-2 font-bold text-black"
+        className="flex gap-2 rounded-md bg-cyan-600 px-4 py-1 font-bold text-black"
       >
         <svg
           width={24}

@@ -1,7 +1,7 @@
 import { faCheck, faHouse } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import React, { useEffect, useState } from 'react'
-import Accordion from './Accordion'
+import Accordion from './Accordions'
 import Text from './Text'
 import ToAnswer from './ToAnswer'
 
