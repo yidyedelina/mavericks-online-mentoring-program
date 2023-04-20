@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import Datepicker from 'tailwind-datepicker-react'
 const options = {
-  title: 'Demo Title',
+  title: 'schedule meeting',
   autoHide: true,
   todayBtn: false,
   clearBtn: true,
@@ -22,10 +22,10 @@ const options = {
   language: 'en',
 }
 
-const DatePicker = () => {
+const DatePicker = ({setDate}) => {
   const [show, setShow] = useState<boolean>(false)
   const handleChange = (selectedDate: Date) => {
-    console.log(selectedDate)
+    setDate(selectedDate);
   }
   const handleClose = (state: boolean) => {
     setShow(state)

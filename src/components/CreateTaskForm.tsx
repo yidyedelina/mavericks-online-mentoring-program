@@ -7,16 +7,20 @@ export default function CreateTaskForm() {
   const [type, setType] = useState<'Video' | 'Article' | 'Project'>('Video')
   const [week, setWeek] = useState<number>(1)
   const [day, setDay] = useState<number>(1)
-  const [content, setContent] = useState<string>('');
-  const [title, setTitle] = useState<string>('');
-  const [video, setVideo] = useState<string>('');
-  const [createTask, status] = useCreateTaskMutation();
+  const [content, setContent] = useState<string>('')
+  const [title, setTitle] = useState<string>('')
+  const [video, setVideo] = useState<string>('')
+  const [createTask, status] = useCreateTaskMutation()
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    //validate fields 
-    if (!title || !content || (type === 'Video' && video === '')) {
+    //validate fields
+    if (
+      !title ||
+      (type !== 'Video' && !content) ||
+      (type === 'Video' && video === '')
+    ) {
       alert('invalid')
-      return;
+      return
     }
     createTask({
       tasks: {
@@ -25,11 +29,11 @@ export default function CreateTaskForm() {
         week: week,
         day: day,
         content: type === 'Video' ? video : JSON.stringify(content),
-      }
+      },
     })
   }
-  const handleContent = (val: string)=> {
-    setContent(val);
+  const handleContent = (val: string) => {
+    setContent(val)
   }
   return (
     <form className="text-left" onSubmit={handleSubmit}>

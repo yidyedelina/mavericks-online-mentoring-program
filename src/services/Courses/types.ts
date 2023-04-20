@@ -22,7 +22,13 @@ export interface Tasks {
   day: number
   createdBy?: string
 }
-
+export interface Schedule {
+  id?: string
+  title: string
+  type: 'Voice Call' | 'Video Call' | 'Text Chat'
+  date: Date
+  mentor: string
+}
 export interface EnrolledCourse {
   id: string
   title: string
@@ -31,6 +37,7 @@ export interface EnrolledCourse {
   task: Tasks[]
 }
 export interface Mentees {
+  mentor: string
   id: string
   name: string
   email: string

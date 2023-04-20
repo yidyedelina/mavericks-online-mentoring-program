@@ -14,7 +14,7 @@ const TabBar = ({
   }
 
   return (
-    <div className="mx-auto max-w-md">
+    <div className="mx-auto w-2/3">
       <div className="flex border-b border-gray-400">
         {tabs.map((tab, index) => (
           <button
