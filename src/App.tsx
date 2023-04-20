@@ -1,4 +1,5 @@
 
+
 import React, { useState } from 'react'
 
 import './App.css'
@@ -21,30 +22,13 @@ const App: React.FC = () => {
   }
 
   return (
-    <main className="App">
-      <CourseDetail />
-      <ProfileBanner />
-      <TabBar
-        tabs={[
-          {
-            component: <RecentActions />,
-            label: 'Recent Action',
-          },
-          {
-            component: <TodaysTask />,
-            label: "Today's Task",
-          },
-          {
-            component: <WeekBox />,
-            label: 'Week',
-          },
-        ]}
-      />
-      <Modal isOpen={isOpen} onClose={onClose}>
-        <CreateTaskForm />
-      </Modal>
-    </main>
 
+    <div>
+      <PastTasksPage/>
+      <ChooseMentor/>
+    </div>
+
+ 
   )
 }
 
