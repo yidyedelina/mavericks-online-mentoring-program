@@ -156,14 +156,12 @@ const QuestionFeed = ({
   }
   return (
     <>
-      <div className="max-w-xl rounded-lg  border-cyan-900 bg-cyan-200 p-6 shadow-md dark:border-cyan-900 dark:bg-cyan-800 ">
+      <div className="max-w-xl rounded-lg  bg-cyan-200 p-6 shadow-md ">
         <div>
           <QandA />
-          <hr />
         </div>
         <ToAnswer onClose={ToClose} isOpen={Toanswer} qid={Qid} />
         <Accordion ToAnswer={ToOpen} children={Ans()} />
-        <hr />
       </div>
       <br />
     </>

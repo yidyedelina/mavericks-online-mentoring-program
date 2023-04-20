@@ -8,7 +8,10 @@ interface Props {
 function Accordion({ children, ToAnswer }: Props) {
   const Answer = () => {
     return (
-      <button onClick={ToAnswer} className="flex gap-1 font-bold text-black">
+      <button
+        onClick={ToAnswer}
+        className="flex gap-2 rounded-md bg-cyan-600 px-4 py-2 font-bold text-black"
+      >
         <svg
           width={24}
           height={24}
@@ -49,7 +52,7 @@ function Accordion({ children, ToAnswer }: Props) {
     <div>
       <button
         type="button"
-        className="flex w-full items-center justify-between rounded-lg px-4 py-2 text-left font-medium  hover:bg-cyan-300  dark:hover:bg-cyan-800 "
+        className="flex w-full items-center justify-between rounded-lg px-4 py-2 text-left font-medium  hover:bg-cyan-300  "
         onClick={handleClick}
       >
         <span>Answers</span>
@@ -87,7 +90,6 @@ function Accordion({ children, ToAnswer }: Props) {
         <div className="pt-2">
           <div>{children}</div>
           <br />
-          <hr className="text-black" />
           <div>
             <Answer />
           </div>
