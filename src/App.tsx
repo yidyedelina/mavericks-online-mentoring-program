@@ -1,13 +1,10 @@
 import React from 'react'
-import PastTasksPage from './pages/PastTasksPage'
-import ChooseMentor from './pages/ChooseMentor'
-
+import Homepage from './pages/Homepage'
 
 const App = () => {
   return (
     <div>
-      <PastTasksPage/>
-      <ChooseMentor/>
+      <Homepage />
     </div>
   )
 }
