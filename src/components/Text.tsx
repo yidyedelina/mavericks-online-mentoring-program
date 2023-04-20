@@ -17,8 +17,8 @@ export default function Text({ children, maxchars, handel }: Props) {
     <>
       <div>
         {short}{' '}
-        <button onClick={handel} className="text-sky-500">
-          {text ? '( Less )' : '(More)'}
+        <button onClick={handel} className="text-cyan-900">
+          {text ? '(Less)' : '...(More)'}
         </button>
       </div>
     </>

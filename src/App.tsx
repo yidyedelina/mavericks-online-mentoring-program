@@ -10,7 +10,8 @@ import { useGetDocsListQuery } from './services/docs'
 import SideBar from './components/SideBar'
 import QuestionFeeds from './components/QuestionFeeds'
 import AskForumPage from './components/AskForumPage'
-import Modal from './components/Check'
+import MyForm from './components/check'
+import Help from './components/check'
 
 const App: React.FC = () => {
   return (

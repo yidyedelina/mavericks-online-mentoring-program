@@ -1,18 +1,31 @@
+import { setDoc, collection } from '@firebase/firestore'
+import { doc, getDoc } from 'firebase/firestore'
 import React, { useState } from 'react'
 import ReactQuill from 'react-quill'
 import 'react-quill/dist/quill.snow.css'
+import { db } from '../firebase'
 
 interface Props {
   onClose: () => void
   isOpen: Boolean
+  qid: string
 }
 
-const ToAnswer = ({ isOpen, onClose }: Props) => {
-  const [Answer, setAnswer] = useState<string>('')
-  const handleSubmit = (event: any) => {
-    event.preventDefault()
-    console.log(Answer)
-    onClose()
+const ToAnswer = ({ isOpen, onClose, qid }: Props) => {
+  const [answer, setAnswer] = useState<string>('')
+
+  const handle = async () => {
+    const docRef = doc(db, 'Questions', qid)
+    const snapShot = await getDoc(docRef)
+    const data = {
+      ...snapShot.data(),
+    }
+    data.answer.push({
+      answer,
+      Firstname: 'Firstname',
+      Lastname: 'Lastname',
+    })
+    await setDoc(docRef, data)
   }
   if (!isOpen) return null
   return (
@@ -21,19 +34,19 @@ const ToAnswer = ({ isOpen, onClose }: Props) => {
         id="defaultModal"
         tabIndex={-1}
         aria-hidden="true"
-        className="fixed inset-0 z-50 flex items-center justify-center bg-gray-900 bg-opacity-50"
+        className="fixed inset-0 z-50 flex items-center justify-center bg-cyan-900 bg-opacity-50"
       >
         <div className="relative max-h-full w-full max-w-2xl">
           {/* Modal content */}
-          <div className="relative rounded-lg bg-white shadow dark:bg-gray-700">
+          <div className="relative rounded-lg bg-white shadow dark:bg-cyan-700">
             {/* Modal header */}
-            <div className="flex items-start justify-between rounded-t border-b p-4 dark:border-gray-600">
-              <h3 className="text-lg font-medium text-gray-900 dark:text-white">
+            <div className="flex items-start justify-between rounded-t border-b p-4 dark:border-cyan-600">
+              <h3 className="text-lg font-medium text-cyan-900 dark:text-white">
                 Write Your Answer
               </h3>
               <button
                 type="button"
-                className="ml-auto inline-flex items-center rounded-lg bg-transparent p-1.5 text-sm text-gray-400 hover:bg-gray-200 hover:text-gray-900 dark:hover:bg-gray-600 dark:hover:text-white"
+                className="ml-auto inline-flex items-center rounded-lg bg-transparent p-1.5 text-sm text-cyan-400 hover:bg-cyan-200 hover:text-cyan-900 dark:hover:bg-cyan-600 dark:hover:text-white"
                 data-modal-hide="defaultModal"
                 onClick={onClose}
               >
@@ -55,19 +68,19 @@ const ToAnswer = ({ isOpen, onClose }: Props) => {
             </div>
             <div className="space-y-6 p-6">
               <div className="my-4">
-                <label className="mb-2 block text-sm font-medium text-gray-900">
+                <label className="mb-2 block text-sm font-medium text-cyan-900">
                   Answer
                 </label>
-                <ReactQuill value={Answer} onChange={setAnswer} />
+                <ReactQuill value={answer} onChange={setAnswer} />
               </div>
             </div>
             {/* Modal footer */}
-            <div className="flex items-center space-x-2 rounded-b border-t border-gray-200 p-6 dark:border-gray-600">
+            <div className="flex items-center space-x-2 rounded-b border-t border-cyan-200 p-6 dark:border-cyan-600">
               <button
                 data-modal-hide="defaultModal"
                 type="button"
-                onClick={handleSubmit}
-                className="rounded-lg bg-blue-700 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                onClick={handle}
+                className="rounded-lg bg-cyan-700 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-cyan-800 focus:outline-none focus:ring-4 focus:ring-cyan-300 dark:bg-cyan-600 dark:hover:bg-cyan-700 dark:focus:ring-cyan-800"
               >
                 Post
               </button>
