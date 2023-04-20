@@ -1,11 +1,16 @@
-import React from 'react'
-import logo from '../assets/images/logo1.jpg'
+import { faComment } from '@fortawesome/free-regular-svg-icons'
+import { faHouse } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
-const Navbar = () => {
+interface Props {
+  onOpen: () => void
+}
+
+const Navbar = ({ onOpen }: Props) => {
   const Avatar = () => {
     return (
-      <div className="relative inline-flex h-10 w-10 items-center justify-center overflow-hidden rounded-full bg-gray-100 dark:bg-gray-600">
-        <span className="font-medium text-gray-600 dark:text-gray-300">JL</span>
+      <div className="relative inline-flex h-12 w-12 items-center justify-center overflow-hidden rounded-full bg-cyan-100 dark:bg-cyan-600">
+        <span className="font-medium text-cyan-600 dark:text-cyan-300">JL</span>
       </div>
     )
   }
@@ -19,7 +24,7 @@ const Navbar = () => {
           <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
             <svg
               aria-hidden="true"
-              className="w-5- h-5 text-gray-500 dark:text-gray-400"
+              className="w-5- h-5 text-cyan-500 dark:text-cyan-400"
               fill="currentColor"
               viewBox="0 0 20 20"
               xmlns="http://www.w3.org/2000/svg"
@@ -34,16 +39,16 @@ const Navbar = () => {
           <input
             type="text"
             id="simple-search"
-            className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 pl-10 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500  dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500"
+            className="block w-full rounded-lg border border-cyan-300 bg-cyan-50 p-2.5 pl-10 text-sm text-cyan-900 focus:border-cyan-500 focus:ring-cyan-500  dark:border-cyan-600 dark:bg-cyan-700 dark:text-white dark:placeholder-cyan-400 dark:focus:border-cyan-500 dark:focus:ring-cyan-500"
             placeholder="Search"
           />
         </div>
         <button
           type="submit"
-          className="ml-2 rounded-lg border border-blue-700 bg-blue-700 p-2.5 text-sm font-medium text-white hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+          className="ml-2 rounded-lg border border-cyan-700 bg-cyan-700 p-2.5 text-sm font-medium text-white hover:bg-cyan-800 focus:outline-none focus:ring-4 focus:ring-cyan-300 dark:bg-cyan-600 dark:hover:bg-cyan-700 dark:focus:ring-cyan-800"
         >
           <svg
-            className="h-5 w-5"
+            className="h-6 w-6"
             fill="none"
             stroke="currentColor"
             viewBox="0 0 24 24"
@@ -61,57 +66,76 @@ const Navbar = () => {
       </form>
     )
   }
-
-  const Notification = () => {
-    return (
-      <button
-        id="dropdownNotificationButton"
-        data-dropdown-toggle="dropdownNotification"
-        className="inline-flex items-center text-center text-sm font-medium text-gray-500 hover:text-gray-900 focus:outline-none dark:text-gray-400 dark:hover:text-white"
-        type="button"
-      >
-        <svg
-          className="h-6 w-6"
-          aria-hidden="true"
-          fill="currentColor"
-          viewBox="0 0 20 20"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path d="M10 2a6 6 0 00-6 6v3.586l-.707.707A1 1 0 004 14h12a1 1 0 00.707-1.707L16 11.586V8a6 6 0 00-6-6zM10 18a3 3 0 01-3-3h6a3 3 0 01-3 3z" />
-        </svg>
-        <div className="relative flex">
-          <div className="relative -top-2 right-3 inline-flex h-3 w-3 rounded-full border-2 border-white bg-red-500 dark:border-gray-900" />
-        </div>
-      </button>
-    )
-  }
   const AddQuestion = () => {
     return (
       <button
         type="button"
-        className="mb-2 mr-2 rounded-full bg-blue-700 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+        onClick={onOpen}
+        className="mr-3 rounded-lg bg-cyan-700 px-4 py-2 text-center text-sm font-medium text-white hover:bg-cyan-800 focus:outline-none focus:ring-4 focus:ring-cyan-300 dark:bg-cyan-600 dark:hover:bg-cyan-700 dark:focus:ring-cyan-800 md:mr-0"
       >
-        Ask Question
+        Add Question
       </button>
     )
   }
+  const Title = () => {
+    return (
+      <a href="#" className="flex items-center">
+        <span className="self-center whitespace-nowrap text-2xl font-semibold dark:text-white">
+          PeerLink
+        </span>
+      </a>
+    )
+  }
   return (
-    <div>
-      <nav className="border-gray-200 bg-white shadow-md dark:bg-gray-900">
-        <div>
-          <Serach />
-        </div>
-        <div>
-          <Notification />
-        </div>
-        <div>
-          <Avatar />
-        </div>
-        <div>
+    <nav className="border-cyan-200 bg-white  shadow-md dark:bg-cyan-900">
+      <div className="mx-auto flex max-w-screen-xl flex-wrap items-center justify-between p-2">
+        <Title />
+        <div className="flex gap-3 md:order-2">
           <AddQuestion />
+          <button
+            data-collapse-toggle="navbar-cta"
+            type="button"
+            className="inline-flex items-center rounded-lg p-2 text-sm text-cyan-500 hover:bg-cyan-100 focus:outline-none focus:ring-2 focus:ring-cyan-200 dark:text-cyan-400 dark:hover:bg-cyan-700 dark:focus:ring-cyan-600 md:hidden"
+            aria-controls="navbar-cta"
+            aria-expanded="false"
+          >
+            <span className="sr-only">Open main menu</span>
+            <svg
+              className="h-6 w-6"
+              aria-hidden="true"
+              fill="currentColor"
+              viewBox="0 0 20 20"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                fillRule="evenodd"
+                d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z"
+                clipRule="evenodd"
+              />
+            </svg>
+          </button>
         </div>
-      </nav>
-    </div>
+        <div
+          className="hidden w-full items-center justify-between md:order-1 md:flex md:w-auto"
+          id="navbar-cta"
+        >
+          <ul className="mt-4 flex flex-col rounded-lg border border-cyan-100 bg-cyan-50 p-4 font-medium dark:border-cyan-700 dark:bg-cyan-800 md:mt-0 md:flex-row md:space-x-8 md:border-0 md:bg-white md:p-0 md:dark:bg-cyan-900">
+            <li className="pt-2.5">
+              <a
+                href="#"
+                className="block rounded bg-cyan-700 pl-3 pr-4  text-white md:bg-transparent md:p-0 md:text-cyan-700 md:dark:text-cyan-500"
+                aria-current="page"
+              >
+                Home
+              </a>
+            </li>
+            <li>
+              <Serach />
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
   )
 }
 
