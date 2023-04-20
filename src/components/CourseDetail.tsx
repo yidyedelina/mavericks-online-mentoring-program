@@ -6,9 +6,9 @@ export default function CourseDetail() {
   const { data, isLoading, error } = useGetTaskQuery(id)
 
   return (
-    <div className="mx-auto w-2/3">
+    <div className="mx-auto w-2/3 mt-5 border border-dashed p-4">
       {isLoading && <div>loading...</div>}
-      <h1 className="text-3xl font-bold">{data && data.title}</h1>
+      <h1 className="text-3xl font-bold text-cyan-400 mb-5">{data && data.title}</h1>
       {data &&
         (data?.type === 'Video' ? (
           <div className="h-96 w-full">

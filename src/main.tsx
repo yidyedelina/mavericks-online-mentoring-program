@@ -10,10 +10,32 @@ import MenteesDashBoard from './pages/MenteesDashBoard'
 import Homepage from './pages/Homepage'
 import CourseDetail from './components/CourseDetail'
 import Root from './pages/Root'
+import MentorDashBoard from './pages/MentorDashBoard'
+import MentorRoot from './pages/MentorRoot'
+import MenteeSignin from './pages/MenteeSignin'
+import MenteeSignup from './pages/MenteeSignup'
+import MentorSignin from './pages/MentorSignin'
+import MentorSignup from './pages/MentorSignup'
 const router = createBrowserRouter([
   {
     path: '/',
     element: <Homepage />,
+  },
+  {
+    path: '/mentees/login',
+    element: <MenteeSignin />,
+  },
+  {
+    path: '/mentees/signup',
+    element: <MenteeSignup />,
+  }, 
+  {
+    path: '/mentors/login',
+    element: <MentorSignin />,
+  },
+  {
+    path: '/mentors/signup',
+    element: <MentorSignup />,
   },
   {
     path: '/mentees',
@@ -29,6 +51,21 @@ const router = createBrowserRouter([
       },
     ],
   },
+  {
+    path: '/mentors',
+    element: <MentorRoot/>,
+    children: [
+      {
+        path: '/mentors',
+        element: <MentorDashBoard/>
+      },
+      {
+        path: '/mentors/taskDetails/:id',
+        element: <CourseDetail/>
+      }
+    ]
+  },
+  
 ])
 const root = ReactDOM.createRoot(document.getElementById('root')!)
 

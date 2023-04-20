@@ -1,10 +1,13 @@
+import { useSelector } from 'react-redux';
 import { useGetTodayTaskQuery } from '../services/Courses/courseapi'
+import { RootState } from '../store';
 import TaskCheckBox from './basic/TaskCheckBox';
 
 export default function TodaysTask() {
+  const auth = useSelector((state: RootState) => state.auth);
   const { data, error, isLoading } = useGetTodayTaskQuery({
-    courseId: 'FX7gxWWG5ZLDCykuaQYn',
-    menteesId: 'K8zcusNSikRmBrOp8J7x',
+    courseId: auth.user.course.trim(),
+    menteesId: auth.user.id,
   });
   return (
     <ul className="w-full rounded-lg border border-gray-200 bg-white text-left text-sm font-medium text-gray-900">

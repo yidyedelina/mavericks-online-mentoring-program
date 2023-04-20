@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom'
 
 import { useGetMenteesTasksQuery } from '../services/Courses/courseapi'
 import { Tasks } from '../services/Courses/types'
+import { useSelector } from 'react-redux'
+import { RootState } from '../store'
 
 export function Test() {
   const data = [
@@ -46,15 +48,21 @@ export function Test() {
 }
 
 const RecentActions = () => {
+  const auth = useSelector((state: RootState) => state.auth);
   const { data, isLoading, error } = useGetMenteesTasksQuery(
     {
-     menteesId:  'K8zcusNSikRmBrOp8J7x'
+     menteesId:  auth.user.id,
    }
   )
   return (
-    <div className="mx-auto max-w-md">
+    <div className="mx-auto max-full">
       <h2 className="mb-4 text-xl font-medium">Recent Actions</h2>
       <ul className="divide-y divide-gray-400">
+        {isLoading ? (
+          <li className="w-full px-4 py-2">Loading...</li>
+        ) : error ? (
+          <li className="w-full px-4 py-2">Error: {'something went wrong'}</li>
+        ) : ''}
         {data?.map((action: Tasks, index) => (
           <li key={index} className="py-4">
             <div className="flex items-center justify-between">
@@ -69,11 +77,6 @@ const RecentActions = () => {
           </li>
         ))}
       </ul>
-      {!isLoading && (
-        <button className="mt-4 text-blue-500" >
-          See More
-        </button>
-      )}
     </div>
   )
 }

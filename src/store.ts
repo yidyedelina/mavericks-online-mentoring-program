@@ -2,6 +2,7 @@ import { configureStore } from '@reduxjs/toolkit'
 import { setupListeners } from '@reduxjs/toolkit/query'
 
 import counterReducer from './features/counter/counterSlice'
+import { authSlice } from './features/AuthState/auth'
 import { docsApi } from './services/docs'
 import { courseApi } from './services/Courses/courseapi'
 
@@ -10,6 +11,7 @@ export const store = configureStore({
     getDefaultMiddleware().concat(docsApi.middleware).concat(courseApi.middleware),
   reducer: {
     counter: counterReducer,
+    auth: authSlice.reducer,
     [docsApi.reducerPath]: docsApi.reducer,
     [courseApi.reducerPath]: courseApi.reducer,
   },

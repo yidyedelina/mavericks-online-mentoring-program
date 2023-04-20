@@ -20,18 +20,18 @@ export default function TaskCheckBox({ task }: { task: Tasks }) {
       }
       setChecked(!checked)
     } catch (error) {
-      console.log(error)
+      
     }
   }
   return (
-    <Link to={`mentees/taskDetails/${task.id}`} className="flex items-center gap-2">
+    <div className="flex items-center gap-2">
       <input
         type="checkbox"
-        className="form-checkbox h-5 w-5 text-blue-600"
+        className="form-checkbox h-5 w-5 text-cyan-400"
         checked={checked}
         onChange={handleChange}
       />
-      <p>Task 1</p>
-    </Link>
+      <Link to={`mentees/taskDetails/${task.id}`}>{task.title}</Link>
+    </div>
   )
 }

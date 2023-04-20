@@ -21,7 +21,7 @@ export default function WeekBox() {
     setOpen(!open)
   }
   return (
-    <div className="mx-auto max-w-lg">
+    <div className="mx-auto">
       <div className="bg-cyan-400 px-6 py-4 hover:bg-cyan-500">
         <button className="text-2xl font-bold text-white" onClick={handleOpen}>
           Weekly Schedule
@@ -49,7 +49,7 @@ export default function WeekBox() {
                 <div className="mt-2">
                   {week.activities.map((activity, index) => (
                     <p key={index} className="text-gray-700">
-                      {activity.title}
+                     {index + 1}. {activity.title}
                     </p>
                   ))}
                 </div>
