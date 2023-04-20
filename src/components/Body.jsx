@@ -5,7 +5,7 @@ import Services from './Services'
 const Body = () => {
   return (
     <div className='h-screen'>
-    <div className="relative bg-gradient-to-b from-cyan-700 to-black h-3/4">
+    <div className="relative bg-gradient-to-b from-cyan-700 to-black h-3/4 mb-0">
     <img src={img} alt="Your" className="w-full object-cover opacity-75 h-full " />
     <div className="absolute top-0 left-0 w-full h-full flex flex-col items-center justify-center">
     <div className="text-center">
