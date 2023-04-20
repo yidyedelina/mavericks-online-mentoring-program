@@ -6,6 +6,7 @@ import TodaysTask from "../components/TodayTask"
 import WeekBox from "../components/WeekBox"
 import ProgressTracker from "../components/ProgressTracker"
 import Navbar from "../components/Navbar"
+import MentorsPage from "../components/MentorChoose/MentorsPage"
 
 export default function MenteesDashBoard() {
   return (
@@ -23,6 +24,10 @@ export default function MenteesDashBoard() {
           {
             component: <WeekBox />,
             label: 'Week',
+          },
+          {
+            component: <MentorsPage />,
+            label: 'Mentors',
           },
         ]}
       />

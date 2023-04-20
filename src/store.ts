@@ -1,10 +1,10 @@
 import { configureStore } from '@reduxjs/toolkit'
 import { setupListeners } from '@reduxjs/toolkit/query'
 
-import counterReducer from './features/counter/counterSlice'
 import { authSlice } from './features/AuthState/auth'
-import { docsApi } from './services/docs'
+import counterReducer from './features/counter/counterSlice'
 import { courseApi } from './services/Courses/courseapi'
+import { docsApi } from './services/docs'
 
 export const store = configureStore({
   middleware: (getDefaultMiddleware) =>

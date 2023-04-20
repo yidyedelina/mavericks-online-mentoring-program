@@ -1,5 +1,9 @@
 import { createApi, fakeBaseQuery } from '@reduxjs/toolkit/query/react'
 import {
+  getAuth,
+  signInWithEmailAndPassword,
+} from 'firebase/auth'
+import {
   collection,
   getDocs,
   addDoc,
@@ -7,9 +11,12 @@ import {
   doc,
   setDoc,
   getDoc,
+  updateDoc,
 } from 'firebase/firestore'
 
 import { app, db } from '../../config/firebase'
+import { AuthState, login } from '../../features/AuthState/auth'
+import { store } from '../../store'
 
 import type {
   Course,
@@ -19,13 +26,6 @@ import type {
   Schedule,
   Tasks,
 } from './types'
-import {
-  getAuth,
-  signInWithEmailAndPassword,
-  createUserWithEmailAndPassword,
-} from 'firebase/auth'
-import { store } from '../../store'
-import { login } from '../../features/AuthState/auth'
 
 export const courseApi = createApi({
   baseQuery: fakeBaseQuery(),
@@ -33,7 +33,7 @@ export const courseApi = createApi({
     createTask: builder.mutation<CourseState, { tasks: Tasks }>({
       async queryFn({ tasks }: { tasks: Tasks }) {
         try {
-          const courseId =  store.getState().auth.user?.course.trim()
+          const courseId = store.getState().auth.user?.course.trim()
           const taskRef = collection(db, 'course', courseId, 'tasks')
           await addDoc(taskRef, tasks)
 
@@ -55,10 +55,25 @@ export const courseApi = createApi({
         }
       },
     }),
+    getCourse: builder.query<Course, string>({
+      async queryFn(courseId: string) {
+        try {
+          console.log(courseId, 'courseId')
+          const docRef = doc(db, 'course', courseId.trim())
+          const dataSnapShot = await getDoc(docRef)
+          const data = dataSnapShot.data() as Course
+          console.log(data, 'getCoruse')
+          return { data: data }
+        } catch (err) {
+          console.log(err)
+          return { error: 'something went wrong' }
+        }
+      },
+    }),
     getCourses: builder.query<{ activities: Tasks[]; week: string }[], void>({
       async queryFn() {
         try {
-          const courseid =  store.getState().auth.user?.course.trim()
+          const courseid = store.getState().auth.user?.course.trim()
           // retrieve course with specified id
           const colRef = collection(db, 'course', courseid, 'tasks')
           const snapshot = await getDocs(colRef)
@@ -112,17 +127,6 @@ export const courseApi = createApi({
         }
       },
     }),
-    scheduleMeeting: builder.mutation<boolean, { schedule: Schedule }>({
-      async queryFn({ schedule }: { schedule: Schedule }) {
-        try {
-          const colRef = collection(db, 'schedules')
-          await addDoc(colRef, schedule)
-          return { data: true }
-        } catch (err) {
-          return { data: false }
-        }
-      },
-    }),
     getMenteesTasks: builder.query<Tasks[], { menteesId: string }>({
       async queryFn({ menteesId }: { menteesId: string }) {
         try {
@@ -138,6 +142,54 @@ export const courseApi = createApi({
           return { data: tasks }
         } catch (err) {
           return { data: [] }
+        }
+      },
+    }),
+    getMentorsList: builder.query<Mentors[], string>({
+      async queryFn(courseId: string) {
+        try {
+          const colRef = collection(db, 'mentors')
+          const snapshot = await getDocs(colRef)
+          const mentors: Mentors[] = []
+          snapshot.forEach((doc) => {
+            mentors.push({
+              ...(doc.data() as Mentors),
+              id: doc.id,
+            })
+          })
+          let data = mentors.filter((mentor) => mentor.course === courseId)
+          return { data: data }
+        } catch (err) {
+          return { data: [] }
+        }
+      },
+    }),
+    selectMentor: builder.mutation<bool, { mentorId: string }>({
+      async queryFn({ mentorId }: { mentorId: string }) {
+        try {
+          const menteeId = store.getState().auth.user?.id
+          const docRef = doc(db, 'mentees', menteeId)
+          const snapshot = await getDoc(docRef)
+          const data = snapshot.data() as Mentees
+          let newData = {
+            ...data,
+            mentor: mentorId,
+          }
+          console.log(newData)
+          await setDoc(doc(db, 'mentees', menteeId), newData)
+          let extractData = localStorage.getItem('auth') || '{}'
+          let x = JSON.parse(extractData) as AuthState
+          let newD = {
+            ...x,
+            user: {
+              ...x.user,
+              mentor: mentorId,
+            },
+          }
+          store.dispatch(login(newD))
+          return { data: true }
+        } catch (err) {
+          return { data: false }
         }
       },
     }),
@@ -237,6 +289,7 @@ export const courseApi = createApi({
         }
       },
     }),
+
     markTaskCompleted: builder.mutation<boolean, Tasks>({
       async queryFn(task: Tasks) {
         try {
@@ -253,13 +306,23 @@ export const courseApi = createApi({
         }
       },
     }),
-
     removeTask: builder.mutation<boolean, string>({
       async queryFn(taskId: string) {
         try {
           const menteesId = store.getState().auth.user?.id
           const ref = collection(db, 'mentees', menteesId, 'tasks')
           await deleteDoc(doc(ref, taskId))
+          return { data: true }
+        } catch (err) {
+          return { data: false }
+        }
+      },
+    }),
+    scheduleMeeting: builder.mutation<boolean, { schedule: Schedule }>({
+      async queryFn({ schedule }: { schedule: Schedule }) {
+        try {
+          const colRef = collection(db, 'schedules')
+          await addDoc(colRef, schedule)
           return { data: true }
         } catch (err) {
           return { data: false }
@@ -287,33 +350,32 @@ export const courseApi = createApi({
           if (data !== undefined)
             store.dispatch(
               login({
-                role: 'mentee',
-                user: data,
                 error: null,
                 isLoggedIn: true,
+                role: 'mentee',
+                user: data,
               })
             )
           return { data: data }
         } catch (error: any) {
-          
           return { error: error.message as string }
         }
       },
     }),
-    getCourse: builder.query<Course, string>({
-      async queryFn(courseId: string) {
+    getMentor: builder.query<Mentors, string>({
+      async queryFn(mentorId: string) {
         try {
-          console.log(courseId, 'courseId')
-          const docRef = doc(db, 'course', courseId.trim())
-          const dataSnapShot = await getDoc(docRef)
-          const data = dataSnapShot.data() as Course
-          console.log(data, "getCoruse")
+          const ref = doc(db, 'mentors', mentorId)
+          const snapshot = await getDoc(ref)
+          const data = {
+            ...(snapshot.data() as Mentors),
+            id: snapshot.id,
+          }
           return { data: data }
         } catch (err) {
-          console.log(err)
-          return { error: 'something went wrong' }
+          return { data: {} as Mentors }
         }
-      }
+      },
     }),
     signInMentor: builder.mutation<
       Mentors,
@@ -336,10 +398,10 @@ export const courseApi = createApi({
           if (data !== undefined)
             store.dispatch(
               login({
-                role: 'mentor',
-                user: data,
                 error: null,
                 isLoggedIn: true,
+                role: 'mentor',
+                user: data,
               })
             )
 
@@ -366,4 +428,7 @@ export const {
   useSignInMenteeMutation,
   useSignInMentorMutation,
   useGetCourseQuery,
+  useGetMentorsListQuery,
+  useGetMentorQuery,
+  useSelectMentorMutation,
 } = courseApi

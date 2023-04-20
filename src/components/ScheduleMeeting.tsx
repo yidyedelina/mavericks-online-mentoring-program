@@ -12,42 +12,37 @@ interface Props {
   modal: boolean
 }
 
-const ScheduleMeetings = ({ modal }: Props) => {
+const ScheduleMeetings = ({ modal, onClick }: Props) => {
   const [mod, setMod] = useState<boolean>(modal)
   const [date, setDate] = useState<Date>(new Date())
   const [title, setTitle] = useState<string>('')
   const [type, setType] = useState<string>('Video Call')
   const [createSchedule, status] = useScheduleMeetingMutation()
   const close = () => {
-    setMod(!mod)
+    onClick(false)
   }
-  const auth = useSelector((state: RootState) => state.auth);
+  const auth = useSelector((state: RootState) => state.auth)
   const handleSubmit = (e) => {
     e.preventDefault()
     if (!title) return
     createSchedule({
       schedule: { date, mentor: auth.user.id, title, type },
     })
-    
   }
   return (
     <>
-      {mod && (
+      {modal && (
         <>
-          <div>
-            <button></button>
-          </div>
           <div
             id="authentication-modal"
             tabIndex={-1}
             aria-hidden="true"
-            className="fixed left-0 right-0 top-0 z-50 max-h-full w-full overflow-y-auto overflow-x-hidden p-4 md:inset-0"
+            className="fixed bottom-40 w-1/3 right-0 z-50 max-h-full  overflow-y-auto overflow-x-hidden p-4"
           >
             <div className="relative max-h-full w-full max-w-md">
               {/* Modal content */}
               <div className="relative rounded-lg bg-white shadow dark:bg-gray-700">
                 <button
-                 
                   onClick={close}
                   className="absolute right-2.5 top-3 ml-auto inline-flex items-center rounded-lg bg-transparent p-1.5 text-sm text-gray-400 hover:bg-gray-200 hover:text-gray-900 dark:hover:bg-gray-800 dark:hover:text-white"
                 >
@@ -121,8 +116,12 @@ const ScheduleMeetings = ({ modal }: Props) => {
                     >
                       {status.isLoading ? 'Loading...' : 'Schedule Meeting'}
                     </button>
-                    {status.isSuccess && <Toast message="Meeting Scheduled" type="success" />}
-                    {status.isError && <Toast message="Error scheduling meeting" type="error" />}
+                    {status.isSuccess && (
+                      <Toast message="Meeting Scheduled" type="success" />
+                    )}
+                    {status.isError && (
+                      <Toast message="Error scheduling meeting" type="error" />
+                    )}
                   </form>
                 </div>
               </div>
