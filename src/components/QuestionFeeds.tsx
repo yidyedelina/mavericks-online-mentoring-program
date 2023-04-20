@@ -9,7 +9,7 @@ import {
   getDoc,
   onSnapshot,
 } from 'firebase/firestore'
-import { db } from '../firebase'
+import { db } from '../config/firebase'
 import QuestionFeed from './QuestionFeed'
 import ToAnswer from './ToAnswer'
 

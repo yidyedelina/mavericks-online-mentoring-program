@@ -3,7 +3,7 @@ import { doc, getDoc } from 'firebase/firestore'
 import React, { useState } from 'react'
 import ReactQuill from 'react-quill'
 import 'react-quill/dist/quill.snow.css'
-import { db } from '../firebase'
+import { db } from '../config/firebase'
 
 interface Props {
   onClose: () => void

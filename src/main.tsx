@@ -17,6 +17,7 @@ import MenteeSignup from './pages/MenteeSignup'
 import MentorSignin from './pages/MentorSignin'
 import MentorSignup from './pages/MentorSignup'
 import MentorsPage from './components/MentorChoose/MentorsPage'
+import AskForumPage from './components/AskForumPage'
 const router = createBrowserRouter([
   {
     path: '/',
@@ -67,9 +68,10 @@ const router = createBrowserRouter([
     ]
   },
   {
-    path: '/test',
-    element: <MentorsPage />,
+    path: '/askforum',
+    element: <AskForumPage />,
   },
+
   
   
 ])
