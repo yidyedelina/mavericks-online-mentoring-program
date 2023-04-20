@@ -22,10 +22,12 @@ const ToAnswer = ({ isOpen, onClose, qid }: Props) => {
     }
     data.answer.push({
       answer,
-      Firstname: 'Firstname',
-      Lastname: 'Lastname',
+      Firstname: 'Ruth',
+      Lastname: 'Wossen',
     })
+
     await setDoc(docRef, data)
+    onClose()
   }
   if (!isOpen) return null
   return (

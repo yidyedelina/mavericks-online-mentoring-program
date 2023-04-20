@@ -17,7 +17,7 @@ const AskForumPage = () => {
   }
 
   return (
-    <div className="relative">
+    <div className="relative bg-cyan-50">
       <ToAsk onClose={onClose} isOpen={toAsk} />
       <Navbar onOpen={Open} />
       <div className="flex pt-5">

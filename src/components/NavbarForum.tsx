@@ -81,13 +81,13 @@ const Navbar = ({ onOpen }: Props) => {
     return (
       <a href="#" className="flex items-center">
         <span className="self-center whitespace-nowrap text-2xl font-semibold dark:text-white">
-          PeerLink
+          AskForum
         </span>
       </a>
     )
   }
   return (
-    <nav className="border-cyan-200 bg-white  shadow-md dark:bg-cyan-900">
+    <nav className="border-cyan-200 bg-cyan-50 shadow-md dark:bg-cyan-900">
       <div className="mx-auto flex max-w-screen-xl flex-wrap items-center justify-between p-2">
         <Title />
         <div className="flex gap-3 md:order-2">
@@ -119,7 +119,7 @@ const Navbar = ({ onOpen }: Props) => {
           className="hidden w-full items-center justify-between md:order-1 md:flex md:w-auto"
           id="navbar-cta"
         >
-          <ul className="mt-4 flex flex-col rounded-lg border border-cyan-100 bg-cyan-50 p-4 font-medium dark:border-cyan-700 dark:bg-cyan-800 md:mt-0 md:flex-row md:space-x-8 md:border-0 md:bg-white md:p-0 md:dark:bg-cyan-900">
+          <ul className="mt-4 flex flex-col rounded-lg border border-cyan-100 bg-cyan-50 p-4 font-medium dark:border-cyan-700 dark:bg-cyan-800 md:mt-0 md:flex-row md:space-x-8 md:border-0 md:bg-cyan-50 md:p-0 md:dark:bg-cyan-900">
             <li className="pt-2.5">
               <a
                 href="#"

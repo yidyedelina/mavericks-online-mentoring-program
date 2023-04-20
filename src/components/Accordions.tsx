@@ -52,7 +52,7 @@ function Accordion({ children, ToAnswer }: Props) {
     <div>
       <button
         type="button"
-        className="flex w-full items-center justify-between rounded-lg px-4 py-2 text-left font-medium  hover:bg-cyan-300  "
+        className="flex w-full items-center justify-between rounded-lg px-4 py-2 text-left font-medium "
         onClick={handleClick}
       >
         <span>Answers</span>

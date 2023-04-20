@@ -56,8 +56,8 @@ const QuestionFeed = ({
   }
   const Avatar = () => {
     return (
-      <div className="relative inline-flex h-12 w-12 items-center justify-center overflow-hidden rounded-full bg-cyan-100 dark:bg-cyan-600">
-        <span className="font-medium text-cyan-600 dark:text-cyan-300">
+      <div className="relative inline-flex h-12 w-12 items-center justify-center overflow-hidden rounded-full bg-cyan-100 dark:bg-cyan-100">
+        <span className="font-medium text-cyan-600 dark:text-cyan-100">
           {Firstname[0]}
           {Lastname[0]}
         </span>
@@ -66,7 +66,7 @@ const QuestionFeed = ({
   }
   const AnsAvatar = ({ firstname, lastname }: Props) => {
     return (
-      <div className="relative inline-flex h-12 w-12 items-center justify-center overflow-hidden rounded-full bg-cyan-100 dark:bg-cyan-600">
+      <div className="relative inline-flex h-12 w-12 items-center justify-center overflow-hidden rounded-full bg-cyan-100 dark:bg-cyan-100">
         <span className="font-medium text-cyan-600 dark:text-cyan-300">
           {firstname[0]}
           {lastname[0]}
@@ -156,7 +156,7 @@ const QuestionFeed = ({
   }
   return (
     <>
-      <div className="max-w-xl rounded-lg  bg-cyan-200 p-6 shadow-md ">
+      <div className="max-w-xl rounded-lg  bg-cyan-100 p-6 shadow-md ">
         <div>
           <QandA />
         </div>
