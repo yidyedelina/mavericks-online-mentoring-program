@@ -4,6 +4,9 @@ import React, { useState } from 'react'
 import ReactQuill from 'react-quill'
 import 'react-quill/dist/quill.snow.css'
 import { db } from '../config/firebase'
+import { useSelector } from 'react-redux'
+import { RootState } from '../store'
+import { Navigate } from 'react-router-dom'
 
 interface Props {
   onClose: () => void
@@ -12,8 +15,11 @@ interface Props {
 }
 
 const ToAnswer = ({ isOpen, onClose, qid }: Props) => {
+  const auth = useSelector((state: RootState) => state.auth)
+ 
   const [answer, setAnswer] = useState<string>('')
-
+  const name = useSelector((state: RootState) => state.auth.user.name)
+   if(auth.isLoggedin === false) return <Navigate to="/login" />
   const handle = async () => {
     const docRef = doc(db, 'Questions', qid)
     const snapShot = await getDoc(docRef)
@@ -22,11 +28,12 @@ const ToAnswer = ({ isOpen, onClose, qid }: Props) => {
     }
     data.answer.push({
       answer,
-      Firstname: 'Firstname',
-      Lastname: 'Lastname',
+      Firstname: name.split(' ')[0],
+      Lastname: name.split(' ')[1],
     })
     await setDoc(docRef, data)
   }
+
   if (!isOpen) return null
   return (
     <>

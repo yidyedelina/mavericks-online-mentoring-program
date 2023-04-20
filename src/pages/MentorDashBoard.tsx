@@ -11,11 +11,13 @@ import CreateTaskForm from '../components/CreateTaskForm'
 import Modal from '../components/basic/Modal'
 import MenteesList from '../components/MenteesList'
 import ScheduleMeeting from '../components/ScheduleMeeting'
+import { useSelector } from 'react-redux'
 
 export default function MentorDashBoard() {
   const { data, isLoading, error } = useGetCoursesQuery()
   const [components, setcomponents] = useState([])
   const [isMeetingOpen, setIsMeetingOpen] = useState(false)
+  const counter = useSelector((state: any) => state.counter)
   useEffect(() => {
     let dt = data?.map((values) => {
       return {
@@ -32,6 +34,7 @@ export default function MentorDashBoard() {
   const [isOpen, setIsOpen] = useState(false)
   return (
     <main className="w-full">
+      <h1 className='hidden'>{ counter}</h1>
       {data && (
         <TabBar
           tabs={components}

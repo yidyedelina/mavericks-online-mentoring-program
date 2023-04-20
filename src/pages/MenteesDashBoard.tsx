@@ -7,10 +7,13 @@ import WeekBox from "../components/WeekBox"
 import ProgressTracker from "../components/ProgressTracker"
 import Navbar from "../components/Navbar"
 import MentorsPage from "../components/MentorChoose/MentorsPage"
+import { useSelector } from "react-redux"
 
 export default function MenteesDashBoard() {
+  const counter = useSelector((state: any) => state.counter.value)
   return (
     <main className="App">
+      <h1 className='hidden'>{counter}</h1>
       <TabBar
         tabs={[
           {

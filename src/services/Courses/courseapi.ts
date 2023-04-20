@@ -26,6 +26,7 @@ import type {
   Schedule,
   Tasks,
 } from './types'
+import { increment } from '../../features/counter/counterSlice'
 
 export const courseApi = createApi({
   baseQuery: fakeBaseQuery(),
@@ -43,6 +44,7 @@ export const courseApi = createApi({
           snapshot.forEach((doc) => {
             courses.push(doc.data() as Course)
           })
+           store.dispatch(increment())
           return { data: { courses, error: null, loading: false } }
         } catch (err) {
           return {
@@ -300,6 +302,7 @@ export const courseApi = createApi({
             ...task,
             dateCompleted: new Date(),
           })
+          store.dispatch(increment())
           return { data: true }
         } catch (err) {
           return { data: false }
@@ -312,6 +315,7 @@ export const courseApi = createApi({
           const menteesId = store.getState().auth.user?.id
           const ref = collection(db, 'mentees', menteesId, 'tasks')
           await deleteDoc(doc(ref, taskId))
+          store.dispatch(increment())
           return { data: true }
         } catch (err) {
           return { data: false }
@@ -322,7 +326,9 @@ export const courseApi = createApi({
       async queryFn({ schedule }: { schedule: Schedule }) {
         try {
           const colRef = collection(db, 'schedules')
+         
           await addDoc(colRef, schedule)
+           store.dispatch(increment())
           return { data: true }
         } catch (err) {
           return { data: false }
